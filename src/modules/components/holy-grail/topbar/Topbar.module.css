@@ -1,0 +1,10 @@
+.topbar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--kapta-color-background);
+    padding: 26px;
+    border-bottom: solid 0.5px var(--kapta-color-divider);
+  }

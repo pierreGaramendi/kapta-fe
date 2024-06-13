@@ -26,17 +26,15 @@ export const Aside: React.FC<{ visible: boolean }> = ({ visible }) => {
         <ul>
           <li>
             <AsideItem label="Home" path="/home">
-              <div>icono</div>
             </AsideItem>
           </li>
           <li>
             <AsideItem label="Tablero" path="/tableros">
-              <div>icono</div>
             </AsideItem>
           </li>
           {workspaces.map((workspace) => (
             <li key={workspace._id}>
-              <h4>{workspace.name}</h4>
+              <span>{workspace.name}</span>
             </li>
           ))}
         </ul>

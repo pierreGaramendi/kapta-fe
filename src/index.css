@@ -26,8 +26,13 @@
   --kapta-color-info: #17a2b8;
 
   /* Neutrals */
-  --kapta-color-background: #121212;
-  --kapta-color-surface: #1e1e1e;
+/*   --kapta-color-background: #121212;
+  --kapta-color-surface: #1e1e1e; */
+
+  --kapta-color-background:#2A2B2C; 
+  --kapta-color-surface: #1A1B1C;
+
+
   --kapta-color-on-background: #ffffff;
   --kapta-color-on-surface: #e0e0e0;
 
