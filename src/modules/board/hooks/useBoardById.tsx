@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { Board } from '../../indexdb/kapta.model';
 import { getBoardById } from '../../indexdb/dbOperations';
+import { sampleBoardData } from '../../indexdb/initializeDB';
 
 
 export const useBoardById = (boardId: string) => {
-  const [board, setBoard] = useState<Board | {}>({});
+  const [board, setBoard] = useState<Board>(sampleBoardData);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 

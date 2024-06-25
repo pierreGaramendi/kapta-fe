@@ -1,5 +1,3 @@
-// src/hooks/useUserWorkspaces.ts
-
 import { useState, useEffect } from "react";
 import { getUserById, getWorkspacesByIds } from "../../indexdb/dbOperations";
 

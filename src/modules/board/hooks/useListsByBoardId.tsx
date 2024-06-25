@@ -10,7 +10,7 @@ const useListsByBoardId = (boardId: string) => {
     const fetchLists = async () => {
       try {
         setLoading(true);
-        const listsData = await getListsByBoardId(boardId);
+        const listsData = await getListsByBoardId(boardId, false);
         setLists(listsData);
       } catch (err: any) {
         setError(err.message);

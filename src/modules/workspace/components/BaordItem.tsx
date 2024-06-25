@@ -1,5 +1,6 @@
-import { Board } from "@/modules/indexdb/kapta.model";
+
 import { NavLink } from "react-router-dom";
+import { Board } from "../../indexdb/kapta.model";
 interface BoardItemProps {
   board: Board;
 }

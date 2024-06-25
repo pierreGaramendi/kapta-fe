@@ -1,10 +1,8 @@
 import React from "react";
-
-import { AsideHeader } from "./components/AsideHeader";
-import { AsideItem } from "./components/AsideItem";
 import useUserWorkspaces from "../../../workspace/hooks/useUserWorkspaces";
 import useClickOutside from "../../../hooks/useClickOutside";
 import { useAsideStore } from "../../../stores/useAsideStore";
+import { SidenavContent } from "../NavbarContent/NavbarContent";
 
 export const Aside: React.FC<{ visible: boolean }> = ({ visible }) => {
   const userId = "user_001";
@@ -15,30 +13,21 @@ export const Aside: React.FC<{ visible: boolean }> = ({ visible }) => {
       toggleAside();
     }
   };
+  const items = [
+    {
+      _id:"/home",
+      name:"Home",
+      boards:[]
+    }
+  ]
   const ref = useClickOutside(handleClickOutside);
   return (
     <aside
       ref={ref}
       className={`aside ${visible ? "visible" : ""} flex flex-col`}
     >
-      <div>
-        <AsideHeader visible={visible} />
-        <ul>
-          <li>
-            <AsideItem label="Home" path="/home">
-            </AsideItem>
-          </li>
-          <li>
-            <AsideItem label="Tablero" path="/tableros">
-            </AsideItem>
-          </li>
-          {workspaces.map((workspace) => (
-            <li key={workspace._id}>
-              <span>{workspace.name}</span>
-            </li>
-          ))}
-        </ul>
-      </div>
+      <SidenavContent items={items}></SidenavContent>
+      <SidenavContent items={workspaces}></SidenavContent>
     </aside>
   );
 };

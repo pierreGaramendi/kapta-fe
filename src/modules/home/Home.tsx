@@ -1,4 +1,6 @@
+import { NavLink } from "react-router-dom";
 import useUserStore from "../stores/userStore";
+import { Box, Button } from "@mantine/core";
 
 export const Home = () => {
   const { user, setUser, clearUser } = useUserStore();
@@ -9,12 +11,12 @@ export const Home = () => {
         <div>
           <h1>Bienvenido, {user.name}</h1>
           <p>Email: {user.email}</p>
-          <button onClick={clearUser}>Cerrar sesión</button>
+          <Button onClick={clearUser}>Cerrar sesión</Button>
         </div>
       ) : (
         <div>
           <h1>No hay usuario logueado</h1>
-          <button
+          <Button
             onClick={() =>
               setUser({
                 _id: "1",
@@ -24,52 +26,22 @@ export const Home = () => {
             }
           >
             Iniciar sesión
-          </button>
+          </Button>
         </div>
       )}
       <div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate ducimus, aliquam atque dignissimos non minima. Facere incidunt veritatis libero similique voluptates unde aliquid odit vitae? Debitis suscipit excepturi nisi vitae!
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate
+        ducimus, aliquam atque dignissimos non minima. Facere incidunt veritatis
+        libero similique voluptates unde aliquid odit vitae? Debitis suscipit
+        excepturi nisi vitae!
       </div>
-      <div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate ducimus, aliquam atque dignissimos non minima. Facere incidunt veritatis libero similique voluptates unde aliquid odit vitae? Debitis suscipit excepturi nisi vitae!
-      </div>
-      <div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate ducimus, aliquam atque dignissimos non minima. Facere incidunt veritatis libero similique voluptates unde aliquid odit vitae? Debitis suscipit excepturi nisi vitae!
-      </div>
-      <div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate ducimus, aliquam atque dignissimos non minima. Facere incidunt veritatis libero similique voluptates unde aliquid odit vitae? Debitis suscipit excepturi nisi vitae!
-      </div>
-      <div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate ducimus, aliquam atque dignissimos non minima. Facere incidunt veritatis libero similique voluptates unde aliquid odit vitae? Debitis suscipit excepturi nisi vitae!
-      </div><div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate ducimus, aliquam atque dignissimos non minima. Facere incidunt veritatis libero similique voluptates unde aliquid odit vitae? Debitis suscipit excepturi nisi vitae!
-      </div><div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate ducimus, aliquam atque dignissimos non minima. Facere incidunt veritatis libero similique voluptates unde aliquid odit vitae? Debitis suscipit excepturi nisi vitae!
-      </div><div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate ducimus, aliquam atque dignissimos non minima. Facere incidunt veritatis libero similique voluptates unde aliquid odit vitae? Debitis suscipit excepturi nisi vitae!
-      </div><div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate ducimus, aliquam atque dignissimos non minima. Facere incidunt veritatis libero similique voluptates unde aliquid odit vitae? Debitis suscipit excepturi nisi vitae!
-      </div><div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate ducimus, aliquam atque dignissimos non minima. Facere incidunt veritatis libero similique voluptates unde aliquid odit vitae? Debitis suscipit excepturi nisi vitae!
-      </div><div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate ducimus, aliquam atque dignissimos non minima. Facere incidunt veritatis libero similique voluptates unde aliquid odit vitae? Debitis suscipit excepturi nisi vitae!
-      </div><div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate ducimus, aliquam atque dignissimos non minima. Facere incidunt veritatis libero similique voluptates unde aliquid odit vitae? Debitis suscipit excepturi nisi vitae!
-      </div><div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate ducimus, aliquam atque dignissimos non minima. Facere incidunt veritatis libero similique voluptates unde aliquid odit vitae? Debitis suscipit excepturi nisi vitae!
-      </div><div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate ducimus, aliquam atque dignissimos non minima. Facere incidunt veritatis libero similique voluptates unde aliquid odit vitae? Debitis suscipit excepturi nisi vitae!
-      </div><div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate ducimus, aliquam atque dignissimos non minima. Facere incidunt veritatis libero similique voluptates unde aliquid odit vitae? Debitis suscipit excepturi nisi vitae!
-      </div><div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate ducimus, aliquam atque dignissimos non minima. Facere incidunt veritatis libero similique voluptates unde aliquid odit vitae? Debitis suscipit excepturi nisi vitae!
-      </div><div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate ducimus, aliquam atque dignissimos non minima. Facere incidunt veritatis libero similique voluptates unde aliquid odit vitae? Debitis suscipit excepturi nisi vitae!
-      </div><div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate ducimus, aliquam atque dignissimos non minima. Facere incidunt veritatis libero similique voluptates unde aliquid odit vitae? Debitis suscipit excepturi nisi vitae!
-      </div><div>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Cupiditate ducimus, aliquam atque dignissimos non minima. Facere incidunt veritatis libero similique voluptates unde aliquid odit vitae? Debitis suscipit excepturi nisi vitae!
-      </div>
+      <Box bg="red.5" my="xl">
+        My component
+        <NavLink to="">test</NavLink>
+      </Box>
+      <Button variant="filled" color="violet" onClick={() => alert("click")}>
+        Copy link to clipboard
+      </Button>
     </div>
   );
 };

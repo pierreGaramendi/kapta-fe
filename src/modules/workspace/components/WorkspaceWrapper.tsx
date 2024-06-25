@@ -1,5 +1,4 @@
-import { Workspace } from "@/modules/indexdb/kapta.model";
-
+import { Workspace } from "../../indexdb/kapta.model";
 interface CustomNavLinkProps {
   workspace: Workspace;
   children?: React.ReactNode;

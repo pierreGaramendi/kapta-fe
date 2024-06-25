@@ -27,6 +27,7 @@ export interface List {
     board_id: string;
     name: string;
     position: number;
+    archived: boolean;
     cards: string[];
 }
 

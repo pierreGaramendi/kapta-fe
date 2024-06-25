@@ -1,37 +1,61 @@
 import { useParams } from "react-router-dom";
-import useListsByBoardId from "./hooks/useListsByBoardId";
 import { useBoardById } from "./hooks/useBoardById";
-import { Card } from "../indexdb/kapta.model";
+import { Card as CardModel } from "../indexdb/kapta.model";
+import { Box, Flex, Text } from "@mantine/core";
+import { NewListComponent } from "./components/NewList/NewList";
+import { NewCardButtonComponent } from "./components/NewCardButton/NewCardButton";
+import { BoardHeaderComponent } from "./components/BoardHeader/BoardHeaderComponent";
+import { BoardWrapperComponent } from "./components/BoardWrapper/BoardWrapper";
+import { ListWrapperComponent } from "./components/ListWrapper/ListWrapper";
+import { ListHeaderComponent } from "./components/ListHeader/ListHeaderComponent";
+import { CardWrapperComponent } from "./components/CardWrapper/CardWrapper";
+import { useListStore } from "./store/ListStore";
+import { useEffect } from "react";
+import { sampleListsData } from "../indexdb/initializeDB";
 
 export const Board = () => {
   const { id } = useParams<{ id: string }>();
   const { board } = useBoardById(id || "");
-  const { lists } = useListsByBoardId(id || "");
-  console.log(lists);
-  return (
-    <div className="h-full">
-      <header className="border">
-        <h2>Lists for Board {board.name}</h2>
-      </header>
+  const initializeStore = useListStore((state: any) => state.initializeStore);
+  const lists = useListStore((state: any) => state.lists);
 
-      <ul className="border flex flex-row">
-        {lists.map((list) => (
-          <li
-            className="border p-4 m-4"
-            style={{ minWidth: "200px" }}
-            key={list._id}
-          >
-            <span>{list.name}</span>
-            <div>
-              {list.cards.map((card: Card) => (
-                <div className="border p-2 cursor-pointer" key={card._id}>
-                  {card.name}
-                </div>
-              ))}
+  useEffect(() => {
+    initializeStore(sampleListsData);
+  }, [initializeStore]);
+
+  return (
+    <BoardWrapperComponent>
+      <BoardHeaderComponent title={board.name} />
+      <div>
+        {lists
+          .filter((item: any) => !item.archived)
+          .map((list: any) => (
+            <div key={list._id}>
+              <span>{list.name}</span>
+              <span>{JSON.stringify(list.archived)}</span>
             </div>
-          </li>
-        ))}
-      </ul>
-    </div>
+          ))}
+      </div>
+      <Flex mih={50} mt="md" ml="md" gap="md" direction="row">
+        {lists
+          .filter((item: any) => !item.archived)
+          .map((list: any) => (
+            <ListWrapperComponent key={list._id}>
+              <ListHeaderComponent title={list.name} list_id={list._id} />
+              <Box id="cards-continaer">
+                {list.cards.map((card: CardModel) => (
+                  <CardWrapperComponent key={card._id}>
+                    <Text size="sm" fw={700}>
+                      {card.name}
+                    </Text>
+                  </CardWrapperComponent>
+                ))}
+              </Box>
+              <NewCardButtonComponent listId={list._id} />
+            </ListWrapperComponent>
+          ))}
+        <NewListComponent />
+      </Flex>
+    </BoardWrapperComponent>
   );
 };

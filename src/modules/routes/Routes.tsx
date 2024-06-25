@@ -6,6 +6,10 @@ import App from "../../App";
 import { Home } from "../home/Home";
 import { Login } from "../auth/pages/Login";
 import { Signup } from "../auth/pages/Signup";
+import { WorkspacePage } from "../workspace/Workspace";
+import { DndExample } from "../workspace/DND";
+import { SortableTest } from "../workspace/SortableTest";
+import { DndPageDemo } from "../dnd/Dnd";
 
 export const AppRoutes = () => {
   return createBrowserRouter([
@@ -38,6 +42,22 @@ export const AppRoutes = () => {
           element: (
             <ProtectedRoute>
               <Board />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "ws/:id",
+          element: (
+            <ProtectedRoute>
+              <SortableTest />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "dnd",
+          element: (
+            <ProtectedRoute>
+              <DndPageDemo />
             </ProtectedRoute>
           ),
         },
