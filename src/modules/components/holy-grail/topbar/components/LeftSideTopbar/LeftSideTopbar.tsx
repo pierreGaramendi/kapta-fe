@@ -38,7 +38,6 @@ export const LeftSideTopbar = () => {
     },
   });
   const handleOnSubmit = async (form: any) => {
-    console.log("grava gus", form, Date.now());
     const newWorkspace = {
       _id: `workspace_${Date.now()}`,
       name: form.name,
@@ -52,10 +51,8 @@ export const LeftSideTopbar = () => {
       if (result.success) {
         /* setMessage(result.message); */
         close();
-        console.log("exito");
       } else {
         /* setMessage(`Failed to add workspace: ${result.message}`); */
-        console.log("no se agrego");
       }
     } catch (error: any) {
       console.error("Error adding workspace", error);

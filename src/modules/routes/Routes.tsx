@@ -10,6 +10,8 @@ import { WorkspacePage } from "../workspace/Workspace";
 import { DndExample } from "../workspace/DND";
 import { SortableTest } from "../workspace/SortableTest";
 import { DndPageDemo } from "../dnd/Dnd";
+import { SortablePage } from "../sortable/SortablePage";
+import { HocExample } from "../hoc/Hoc";
 
 export const AppRoutes = () => {
   return createBrowserRouter([
@@ -58,6 +60,14 @@ export const AppRoutes = () => {
           element: (
             <ProtectedRoute>
               <DndPageDemo />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: "final",
+          element: (
+            <ProtectedRoute>
+              <SortablePage />
             </ProtectedRoute>
           ),
         },

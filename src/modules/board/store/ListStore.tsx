@@ -41,7 +41,6 @@ export const useListStore = create((set) => ({
 
   addCardToList: (listId: string, card: any) =>
     set((state: any) => {
-      console.log('aaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
       const lists = [...state.lists];
       let idxFound = findIndex(propEq(listId, "_id"))(lists);
       let cards = lists[idxFound]["cards"]

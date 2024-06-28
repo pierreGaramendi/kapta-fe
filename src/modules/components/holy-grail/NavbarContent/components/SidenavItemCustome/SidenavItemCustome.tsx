@@ -16,7 +16,6 @@ export const SidenavItemCustome: React.FC<SidenavItemProps> = ({
   const navigate = useNavigate();
   
   const toggleOpen = () => {
-    console.log('bodommmmmmmmmmmmm',children)
     if (children !== null) {
       
       if ((children === undefined) || (children.length === 0)) {

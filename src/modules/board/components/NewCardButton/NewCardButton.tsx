@@ -23,7 +23,6 @@ export const NewCardButtonComponent: React.FC<
     },
   });
   const handleOnSubmit = (formValues: any) => {
-    console.log('joyraaaaaaaaaaaaaaaaaa')
     const newCard = {
       _id: `card_${Date.now()}`,
       name: formValues.name,

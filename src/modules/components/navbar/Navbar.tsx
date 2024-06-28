@@ -9,8 +9,6 @@ export function NavbarNested({ workspaces }: any) {
   const links = mockdata.map((item) => composeLinkGroup(item));
   const [linksState, setLinksState] = useState(links);
   const addElement = (item: any) => {
-     console.log('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~`',linksState)
-    //console.log('vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvwwwwwwwwwwwww',composeLinkGroup(item))
     setLinksState([...linksState, composeLinkGroup(item)]);
   };
   useEffect(() => {

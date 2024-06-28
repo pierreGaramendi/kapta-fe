@@ -20,8 +20,6 @@ export const useInsertWorkspace = () => {
       await workspacesStore.add(workspace);
       await tx.done;
 
-      console.log('Workspace added to the store and user updated', workspace._id);
-
       return { success: true, message: `Workspace ${workspace._id} added successfully` };
     } catch (error: any) {
       console.error('Error adding workspace', error);

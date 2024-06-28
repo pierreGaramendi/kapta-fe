@@ -25,7 +25,6 @@ export const DndPageDemo = () => {
   const tasks = INITIAL_TASKS;
   const initialBoardSections = initializeBoard(INITIAL_TASKS);
   const [boardSections, setBoardSections] = useState<BoardSectionsType>(initialBoardSections);
-  console.log("initialBoardSections", initialBoardSections);
   const [activeTaskId, setActiveTaskId] = useState<null | string>(null);
 
   const sensors = useSensors(
@@ -68,8 +67,6 @@ export const DndPageDemo = () => {
   };
 
   const handleDragEnd = ({ active, over }: DragEndEvent) => {
-    console.log("active",active)
-    console.log("over",over)
     const activeContainer = findBoardSectionContainer(boardSections, active.id as string);
     const overContainer = findBoardSectionContainer(boardSections, over?.id as string);
 
