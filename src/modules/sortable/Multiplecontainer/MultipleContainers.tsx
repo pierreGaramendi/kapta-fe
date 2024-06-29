@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { createPortal, unstable_batchedUpdates } from "react-dom";
+import { createPortal } from "react-dom";
 import {
   closestCenter,
   pointerWithin,
@@ -9,7 +9,6 @@ import {
   DragOverlay,
   getFirstCollision,
   UniqueIdentifier,
-  MeasuringStrategy,
 } from "@dnd-kit/core";
 import {
   SortableContext,
@@ -17,7 +16,7 @@ import {
   verticalListSortingStrategy,
   horizontalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { Item, Container } from "../../components";
+import { Item, Container } from "../components";
 import { useSensorsCustome } from "./hooks";
 import {
   dropAnimation,
@@ -27,8 +26,8 @@ import {
   getNextContainerId,
   measuringConfig,
 } from "./MultipleContainers.constants";
-import { Trash } from "./Trash";
-import { SortableItem } from "./SortableItem";
+import { Trash } from "../components/Trash/Trash";
+import { SortableItem } from "../components/SortableItem/SortableItem";
 import { DroppableContainer } from "./DroppableContainer";
 
 export function MultipleContainers({ wrapperStyle = () => ({}) }: any) {
@@ -137,6 +136,11 @@ export function MultipleContainers({ wrapperStyle = () => ({}) }: any) {
     setClonedItems(null);
   };
 
+  const onDragStart = ({ active }: any) => {
+    setActiveId(active.id);
+    setClonedItems(items);
+  };
+
   useEffect(() => {
     requestAnimationFrame(() => {
       recentlyMovedToNewContainer.current = false;
@@ -148,10 +152,7 @@ export function MultipleContainers({ wrapperStyle = () => ({}) }: any) {
       sensors={sensors}
       collisionDetection={collisionDetectionStrategy}
       measuring={measuringConfig}
-      onDragStart={({ active }) => {
-        setActiveId(active.id);
-        setClonedItems(items);
-      }}
+      onDragStart={onDragStart}
       onDragOver={({ active, over }) => {
         const overId = over?.id;
 
@@ -192,7 +193,7 @@ export function MultipleContainers({ wrapperStyle = () => ({}) }: any) {
 
             return {
               ...items,
-              [activeContainer]: items[activeContainer].filter((item) => item !== active.id),
+              [activeContainer]: items[activeContainer].filter((item: any) => item !== active.id),
               [overContainer]: [
                 ...items[overContainer].slice(0, newIndex),
                 items[activeContainer][activeIndex],
@@ -237,16 +238,13 @@ export function MultipleContainers({ wrapperStyle = () => ({}) }: any) {
 
         if (overId === PLACEHOLDER_ID) {
           const newContainerId = getNextContainerId(items);
-
-          unstable_batchedUpdates(() => {
-            setContainers((containers) => [...containers, newContainerId]);
-            setItems((items: any) => ({
-              ...items,
-              [activeContainer]: items[activeContainer].filter((id: any) => id !== activeId),
-              [newContainerId]: [active.id],
-            }));
-            setActiveId(null);
-          });
+          setContainers((containers) => [...containers, newContainerId]);
+          setItems((items: any) => ({
+            ...items,
+            [activeContainer]: items[activeContainer].filter((id: any) => id !== activeId),
+            [newContainerId]: [active.id],
+          }));
+          setActiveId(null);
           return;
         }
 
@@ -344,12 +342,10 @@ export function MultipleContainers({ wrapperStyle = () => ({}) }: any) {
 
   function handleAddColumn() {
     const newContainerId = getNextContainerId(items);
-    unstable_batchedUpdates(() => {
-      setContainers((containers) => [...containers, newContainerId]);
-      setItems((items: any) => ({
-        ...items,
-        [newContainerId]: [],
-      }));
-    });
+    setContainers((containers) => [...containers, newContainerId]);
+    setItems((items: any) => ({
+      ...items,
+      [newContainerId]: [],
+    }));
   }
 }

@@ -1,4 +1,4 @@
-import { MultipleContainers } from "./examples/Sortable/MultipleContainers";
+import { MultipleContainers } from "./Multiplecontainer/MultipleContainers";
 
 export const SortablePage = () => {
   return <MultipleContainers/>;

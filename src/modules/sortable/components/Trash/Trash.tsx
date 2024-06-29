@@ -1,4 +1,3 @@
-import React from 'react';
 import { UniqueIdentifier, useDroppable } from "@dnd-kit/core";
 
 export const Trash = ({ id }: { id: UniqueIdentifier }) => {

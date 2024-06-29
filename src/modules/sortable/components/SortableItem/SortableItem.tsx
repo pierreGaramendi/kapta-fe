@@ -1,28 +1,11 @@
 import { useSortable } from "@dnd-kit/sortable";
-import { useMountStatus } from "./hooks";
-import { Item } from "../../components";
+import { useMountStatus } from "../../Multiplecontainer/hooks";
+import { Item } from "..";
 
-export const SortableItem = ({
-  disabled,
-  id,
-  index,
-  handle,
-  containerId,
-  getIndex,
-  wrapperStyle,
-}: any) => {
-  const {
-    setNodeRef,
-    setActivatorNodeRef,
-    listeners,
-    isDragging,
-    isSorting,
-    transform,
-    transition,
-  } = useSortable({
+export const SortableItem = ({ disabled, id, index }: any) => {
+  const { setNodeRef, listeners, isDragging, isSorting, transform, transition } = useSortable({
     id,
   });
-  // yyy console.log(disabled, id, index, handle, containerId, getIndex, wrapperStyle);
   const mounted = useMountStatus();
   const mountedWhileDragging = isDragging && !mounted;
 
@@ -32,8 +15,6 @@ export const SortableItem = ({
       value={id}
       dragging={isDragging}
       sorting={isSorting}
-      handle={handle}
-      handleProps={handle ? { ref: setActivatorNodeRef } : undefined}
       index={index}
       /* wrapperStyle={wrapperStyle({ index })} */
       transition={transition}

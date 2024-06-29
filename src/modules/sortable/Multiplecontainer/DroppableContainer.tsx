@@ -1,5 +1,5 @@
 import { useSortable } from "@dnd-kit/sortable";
-import { Container } from "../../components";
+import { Container } from "../components";
 import { CSS } from "@dnd-kit/utilities";
 import { animateLayoutChanges } from "./MultipleContainers.constants";
 
@@ -19,7 +19,7 @@ export function DroppableContainer({ children, disabled, id, items, ...props }: 
       style={{
         transition,
         transform: CSS.Translate.toString(transform),
-        opacity: isDragging ? 0.1 : undefined,
+        opacity: isDragging ? 0.5 : undefined,
       }}
       handleProps={{
         ...attributes,
