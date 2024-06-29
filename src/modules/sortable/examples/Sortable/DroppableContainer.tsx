@@ -1,51 +1,30 @@
 import { useSortable } from "@dnd-kit/sortable";
-import { Container, ContainerProps } from "../../components";
+import { Container } from "../../components";
 import { CSS } from "@dnd-kit/utilities";
-import { UniqueIdentifier } from "@dnd-kit/core";
 import { animateLayoutChanges } from "./MultipleContainers.constants";
 
-export function DroppableContainer({
-  children,
-  columns = 1,
-  disabled,
-  id,
-  items,
-  style,
-  ...props
-}: ContainerProps & {
-  disabled?: boolean;
-  id: UniqueIdentifier;
-  items: UniqueIdentifier[];
-  style?: React.CSSProperties;
-}) {
-  const { active, attributes, isDragging, listeners, over, setNodeRef, transition, transform } =
-    useSortable({
-      id,
-      data: {
-        type: "container",
-        children: items,
-      },
-      animateLayoutChanges,
-    });
-  const isOverContainer = over
-    ? (id === over.id && active?.data.current?.type !== "container") || items.includes(over.id)
-    : false;
+export function DroppableContainer({ children, disabled, id, items, ...props }: any) {
+  const { attributes, isDragging, listeners, setNodeRef, transition, transform } = useSortable({
+    id,
+    data: {
+      type: "container",
+      children: items,
+    },
+    animateLayoutChanges,
+  });
 
   return (
     <Container
       ref={disabled ? undefined : setNodeRef}
       style={{
-        ...style,
         transition,
         transform: CSS.Translate.toString(transform),
-        opacity: isDragging ? 0.5 : undefined,
+        opacity: isDragging ? 0.1 : undefined,
       }}
-      hover={isOverContainer}
       handleProps={{
         ...attributes,
         ...listeners,
       }}
-      columns={columns}
       {...props}
     >
       {children}

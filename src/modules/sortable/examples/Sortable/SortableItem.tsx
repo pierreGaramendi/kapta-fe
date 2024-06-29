@@ -1,7 +1,5 @@
-import React from "react";
 import { useSortable } from "@dnd-kit/sortable";
 import { useMountStatus } from "./hooks";
-
 import { Item } from "../../components";
 
 export const SortableItem = ({
@@ -9,8 +7,6 @@ export const SortableItem = ({
   id,
   index,
   handle,
-  renderItem,
-  style,
   containerId,
   getIndex,
   wrapperStyle,
@@ -21,13 +17,12 @@ export const SortableItem = ({
     listeners,
     isDragging,
     isSorting,
-    over,
-    overIndex,
     transform,
     transition,
   } = useSortable({
     id,
   });
+  // yyy console.log(disabled, id, index, handle, containerId, getIndex, wrapperStyle);
   const mounted = useMountStatus();
   const mountedWhileDragging = isDragging && !mounted;
 
@@ -40,20 +35,11 @@ export const SortableItem = ({
       handle={handle}
       handleProps={handle ? { ref: setActivatorNodeRef } : undefined}
       index={index}
-      wrapperStyle={wrapperStyle({ index })}
-      style={style({
-        index,
-        value: id,
-        isDragging,
-        isSorting,
-        overIndex: over ? getIndex(over.id) : overIndex,
-        containerId,
-      })}
+      /* wrapperStyle={wrapperStyle({ index })} */
       transition={transition}
       transform={transform}
       fadeIn={mountedWhileDragging}
       listeners={listeners}
-      renderItem={renderItem}
     >
       <div>esto no esta funcionando TODO</div>
     </Item>

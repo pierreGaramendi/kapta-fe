@@ -2,20 +2,14 @@ import React, { useEffect } from "react";
 import classNames from "classnames";
 import type { DraggableSyntheticListeners } from "@dnd-kit/core";
 import type { Transform } from "@dnd-kit/utilities";
-
-import { Handle, Remove } from "./components";
-
 import styles from "./Item.module.css";
 
 export interface Props {
   children?: React.ReactNode;
-
   dragOverlay?: boolean;
   color?: string;
   disabled?: boolean;
   dragging?: boolean;
-  handle?: boolean;
-  handleProps?: any;
   height?: number;
   index?: number;
   fadeIn?: boolean;
@@ -52,15 +46,11 @@ export const Item = React.memo(
         dragging,
         disabled,
         fadeIn,
-        handle,
-        handleProps,
         height,
         index,
         listeners,
         onRemove,
-        renderItem,
         sorting,
-        style,
         transition,
         transform,
         value,
@@ -81,21 +71,7 @@ export const Item = React.memo(
         };
       }, [dragOverlay]);
 
-      return renderItem ? (
-        renderItem({
-          dragOverlay: Boolean(dragOverlay),
-          dragging: Boolean(dragging),
-          sorting: Boolean(sorting),
-          index,
-          fadeIn: Boolean(fadeIn),
-          listeners,
-          ref,
-          style,
-          transform,
-          transition,
-          value,
-        })
-      ) : (
+      return (
         <li
           className={classNames(
             styles.Wrapper,
@@ -119,27 +95,26 @@ export const Item = React.memo(
         >
           <div
             className={classNames(
-              /* styles.Item, esto noes por lo que se pierde el reordenamiento entre elementos*/
               dragging && styles.dragging,
-              handle && styles.withHandle,
               dragOverlay && styles.dragOverlay,
-              disabled && styles.disabled,
-              color && styles.color
+              disabled && styles.disabled
             )}
-                 /* style={style} */
             data-cypress="draggable-item"
-            {...(!handle ? listeners : undefined)}
+            {...listeners}
             {...props}
-            tabIndex={!handle ? 0 : undefined}
-            style={{ border: "solid",padding:"20px",width:"100%",backgroundColor:"firebrick"}}
+            style={{
+              border: "solid",
+              padding: "20px",
+              width: "100%",
+              backgroundColor: "firebrick",
+            }}
           >
-          {value}
+            {value}
             {/* {children} */}
-            <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Itaque eum accusantium, at obcaecati aut a ad blanditiis </div>
-            <span /* className={styles.Actions} */>
-              {onRemove ? <Remove className={styles.Remove} onClick={onRemove} /> : null}
-              {handle ? <Handle {...handleProps} {...listeners} /> : null}
-            </span>
+            <div>
+              xxx xxx xxxxxx xx xxx xxx xxxxx xxx xxx xxxx xxxx xxxxxxx xx xxxx xxxxx xxxx xxxx xxx
+              xx xxxxx xxx xxxx xxxx xx xx
+            </div>
           </div>
         </li>
       );

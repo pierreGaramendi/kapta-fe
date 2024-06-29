@@ -1,4 +1,4 @@
-import { DropAnimation, UniqueIdentifier, defaultDropAnimationSideEffects } from "@dnd-kit/core";
+import { DropAnimation, MeasuringStrategy, UniqueIdentifier, defaultDropAnimationSideEffects } from "@dnd-kit/core";
 import { AnimateLayoutChanges, defaultAnimateLayoutChanges } from "@dnd-kit/sortable";
 
 export const dropAnimation: DropAnimation = {
@@ -58,4 +58,11 @@ export const getIndex = (id: UniqueIdentifier,items:any) => {
   const index = items[container].indexOf(id);
 
   return index;
+};
+
+
+export const measuringConfig = {
+  droppable: {
+    strategy: MeasuringStrategy.Always,
+  },
 };
