@@ -24,6 +24,7 @@ import {
 import { Trash } from "../components/Trash/Trash";
 import { SortableItem } from "../components/SortableItem/SortableItem";
 import { DroppableContainer } from "./DroppableContainer";
+import styles from "./MultipleContainers.module.css";
 
 export function MultipleContainers({ wrapperStyle = () => ({}) }: any) {
   const [items, setItems] = useState<any>({
@@ -285,9 +286,9 @@ export function MultipleContainers({ wrapperStyle = () => ({}) }: any) {
             </DroppableContainer>
           ))}
           {
-            <DroppableContainer id={PLACEHOLDER_ID} disabled={isSortingContainer} items={empty} onClick={handleAddColumn}>
+            <div className={styles.NewContainer} id={PLACEHOLDER_ID} onClick={handleAddColumn}>
               + Add column
-            </DroppableContainer>
+            </div>
           }
         </SortableContext>
       </div>
