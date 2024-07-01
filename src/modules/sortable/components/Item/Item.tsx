@@ -3,6 +3,7 @@ import classNames from "classnames";
 import type { DraggableSyntheticListeners } from "@dnd-kit/core";
 import type { Transform } from "@dnd-kit/utilities";
 import styles from "./Item.module.css";
+import { Card, Text } from "@mantine/core";
 
 export interface Props {
   children?: React.ReactNode;
@@ -37,87 +38,73 @@ export interface Props {
 }
 
 export const Item = React.memo(
-  React.forwardRef<HTMLLIElement, Props>(
-    (
-      {
-        children,
-        color,
-        dragOverlay,
-        dragging,
-        disabled,
-        fadeIn,
-        height,
-        index,
-        listeners,
-        onRemove,
-        sorting,
-        transition,
-        transform,
-        value,
-        wrapperStyle,
-        ...props
-      },
-      ref
-    ) => {
-      useEffect(() => {
-        if (!dragOverlay) {
-          return;
-        }
+  React.forwardRef<HTMLLIElement, Props>(({ ...properties }, ref) => {
+    const {
+      children,
+      color,
+      dragOverlay,
+      dragging,
+      disabled,
+      fadeIn,
+      height,
+      index,
+      listeners,
+      onRemove,
+      sorting,
+      transition,
+      transform,
+      value,
+      wrapperStyle,
+      ...props
+    } = properties;
+    useEffect(() => {
+      if (!dragOverlay) {
+        return;
+      }
 
-        document.body.style.cursor = "grabbing";
+      document.body.style.cursor = "grabbing";
 
-        return () => {
-          document.body.style.cursor = "";
-        };
-      }, [dragOverlay]);
-
-      return (
-        <li
-          className={classNames(
-            styles.Wrapper,
-            fadeIn && styles.fadeIn,
-            sorting && styles.sorting,
-            dragOverlay && styles.dragOverlay
-          )}
-          style={
-            {
-              ...wrapperStyle,
-              transition: [transition, wrapperStyle?.transition].filter(Boolean).join(", "),
-              "--translate-x": transform ? `${Math.round(transform.x)}px` : undefined,
-              "--translate-y": transform ? `${Math.round(transform.y)}px` : undefined,
-              "--scale-x": transform?.scaleX ? `${transform.scaleX}` : undefined,
-              "--scale-y": transform?.scaleY ? `${transform.scaleY}` : undefined,
-              "--index": index,
-              "--color": color,
-            } as React.CSSProperties
-          }
-          ref={ref}
+      return () => {
+        document.body.style.cursor = "";
+      };
+    }, [dragOverlay]);
+    const stylesItem = {
+      ...wrapperStyle,
+      transition: [transition, wrapperStyle?.transition].filter(Boolean).join(", "),
+      "--translate-x": transform ? `${Math.round(transform.x)}px` : undefined,
+      "--translate-y": transform ? `${Math.round(transform.y)}px` : undefined,
+      "--scale-x": transform?.scaleX ? `${transform.scaleX}` : undefined,
+      "--scale-y": transform?.scaleY ? `${transform.scaleY}` : undefined,
+      "--index": index,
+      "--color": color,
+    } as React.CSSProperties;
+    return (
+      <li
+        className={classNames(
+          styles.Wrapper,
+          fadeIn && styles.fadeIn,
+          sorting && styles.sorting,
+          dragOverlay && styles.dragOverlay
+        )}
+        style={stylesItem}
+        ref={ref}
+      >
+        <div
+          className={classNames(dragging && styles.dragging, dragOverlay && styles.dragOverlay, disabled && styles.disabled)}
+          data-cypress="draggable-item"
+          {...listeners}
+          {...props}
+          style={{ width: "100%", marginBottom: "15px" }}
         >
-          <div
-            className={classNames(
-              dragging && styles.dragging,
-              dragOverlay && styles.dragOverlay,
-              disabled && styles.disabled
-            )}
-            data-cypress="draggable-item"
-            {...listeners}
-            {...props}
-            style={{
-              border: "solid",
-              padding: "20px",
-              width: "100%",
-              backgroundColor: "firebrick",
-            }}
-          >
-            {value}
-            {/* {children} */}
-            <div>
-              xxx xxx xxxxxx xx xxx xxx xxxxx xxx xxx xxxx xxxx xxxxxxx xx xxxx xxxxx xxxx xxxx xxx
-              xx xxxxx xxx xxxx xxxx xx xx
-            </div>
-          </div>
-        </li>
-      );
-    }
-  )
+          {/* {children} */}
+          <Card shadow="sm" padding="lg" radius="md" withBorder color="lime.5" bg="dark.4">
+            <Text size="sm" c="gray" fw={700}>
+              {value} Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla sint nobis commodi harum voluptatem! Quis
+              nobis enim id necessitatibus. Unde id ut minima at quae reiciendis eum quia incidunt ab!
+            </Text>
+          </Card>
+        </div>
+      </li>
+    );
+  })
 );

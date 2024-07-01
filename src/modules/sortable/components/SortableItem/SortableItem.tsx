@@ -16,7 +16,6 @@ export const SortableItem = ({ disabled, id, index }: any) => {
       dragging={isDragging}
       sorting={isSorting}
       index={index}
-      /* wrapperStyle={wrapperStyle({ index })} */
       transition={transition}
       transform={transform}
       fadeIn={mountedWhileDragging}

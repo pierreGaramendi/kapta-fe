@@ -10,12 +10,7 @@ import {
   getFirstCollision,
   UniqueIdentifier,
 } from "@dnd-kit/core";
-import {
-  SortableContext,
-  arrayMove,
-  verticalListSortingStrategy,
-  horizontalListSortingStrategy,
-} from "@dnd-kit/sortable";
+import { SortableContext, arrayMove, verticalListSortingStrategy, horizontalListSortingStrategy } from "@dnd-kit/sortable";
 import { Item, Container } from "../components";
 import { useSensorsCustome } from "./hooks";
 import {
@@ -47,9 +42,7 @@ export function MultipleContainers({ wrapperStyle = () => ({}) }: any) {
       if (activeId && activeId in items) {
         return closestCenter({
           ...args,
-          droppableContainers: args.droppableContainers.filter(
-            (container) => container.id in items
-          ),
+          droppableContainers: args.droppableContainers.filter((container) => container.id in items),
         });
       }
 
@@ -146,7 +139,7 @@ export function MultipleContainers({ wrapperStyle = () => ({}) }: any) {
       recentlyMovedToNewContainer.current = false;
     });
   }, [items]);
-
+  console.log("containers ", containers);
   return (
     <DndContext
       sensors={sensors}
@@ -180,9 +173,7 @@ export function MultipleContainers({ wrapperStyle = () => ({}) }: any) {
               newIndex = overItems.length + 1;
             } else {
               const isBelowOverItem =
-                over &&
-                active.rect.current.translated &&
-                active.rect.current.translated.top > over.rect.top + over.rect.height;
+                over && active.rect.current.translated && active.rect.current.translated.top > over.rect.top + over.rect.height;
 
               const modifier = isBelowOverItem ? 1 : 0;
 
@@ -267,10 +258,7 @@ export function MultipleContainers({ wrapperStyle = () => ({}) }: any) {
       onDragCancel={onDragCancel}
     >
       <div style={{ display: "flex", flexDirection: "row", maxHeight: "100%" }}>
-        <SortableContext
-          items={[...containers, PLACEHOLDER_ID]}
-          strategy={horizontalListSortingStrategy}
-        >
+        <SortableContext items={[...containers, PLACEHOLDER_ID]} strategy={horizontalListSortingStrategy}>
           {containers.map((containerId: any) => (
             <DroppableContainer
               key={containerId}
@@ -297,12 +285,7 @@ export function MultipleContainers({ wrapperStyle = () => ({}) }: any) {
             </DroppableContainer>
           ))}
           {
-            <DroppableContainer
-              id={PLACEHOLDER_ID}
-              disabled={isSortingContainer}
-              items={empty}
-              onClick={handleAddColumn}
-            >
+            <DroppableContainer id={PLACEHOLDER_ID} disabled={isSortingContainer} items={empty} onClick={handleAddColumn}>
               + Add column
             </DroppableContainer>
           }
@@ -323,6 +306,7 @@ export function MultipleContainers({ wrapperStyle = () => ({}) }: any) {
   );
 
   function renderSortableItemDragOverlay(id: UniqueIdentifier) {
+    console.log("blanco fijo");
     return <Item value={id} wrapperStyle={wrapperStyle({ index: 0 })} dragOverlay />;
   }
 
