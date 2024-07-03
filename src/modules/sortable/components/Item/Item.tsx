@@ -19,7 +19,7 @@ export interface Props {
   sorting?: boolean;
   style?: React.CSSProperties;
   transition?: string | null;
-  wrapperStyle?: React.CSSProperties;
+/*   wrapperStyle?: React.CSSProperties; */
   value: React.ReactNode;
   onRemove?(): void;
   renderItem?(args: {
@@ -54,7 +54,6 @@ export const Item = React.memo(
       transition,
       transform,
       value,
-      wrapperStyle,
       ...props
     } = properties;
     useEffect(() => {
@@ -69,8 +68,7 @@ export const Item = React.memo(
       };
     }, [dragOverlay]);
     const stylesItem = {
-      ...wrapperStyle,
-      transition: [transition, wrapperStyle?.transition].filter(Boolean).join(", "),
+      transition: [transition].filter(Boolean).join(", "),
       "--translate-x": transform ? `${Math.round(transform.x)}px` : undefined,
       "--translate-y": transform ? `${Math.round(transform.y)}px` : undefined,
       "--scale-x": transform?.scaleX ? `${transform.scaleX}` : undefined,
