@@ -2,13 +2,13 @@ import { useSortable } from "@dnd-kit/sortable";
 import { useMountStatus } from "../../Multiplecontainer/hooks";
 import { Item } from "..";
 
-export const SortableItem = ({ disabled, id, index }: any) => {
+export const SortableItem = ({ disabled, id, index, content }: any) => {
   const { setNodeRef, listeners, isDragging, isSorting, transform, transition } = useSortable({
     id,
   });
   const mounted = useMountStatus();
   const mountedWhileDragging = isDragging && !mounted;
-
+  console.log("content:               ",content)
   return (
     <Item
       ref={disabled ? undefined : setNodeRef}
@@ -20,8 +20,7 @@ export const SortableItem = ({ disabled, id, index }: any) => {
       transform={transform}
       fadeIn={mountedWhileDragging}
       listeners={listeners}
-    >
-      <div>esto no esta funcionando TODO</div>
-    </Item>
+      content={content}
+    />
   );
 };

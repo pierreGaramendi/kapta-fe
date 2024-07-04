@@ -26,7 +26,7 @@ import { SortableItem } from "../components/SortableItem/SortableItem";
 import { DroppableContainer } from "./DroppableContainer";
 import styles from "./MultipleContainers.module.css";
 
-export function MultipleContainers({ fullList, onlyList, onlyListIds }: any) {
+export function MultipleContainers({ fullList, onlyList, onlyListIds, onlyCards }: any) {
   const [items, setItems] = useState<any>(fullList);
   const [containers, setContainers] = useState(onlyListIds);
   const [activeId, setActiveId] = useState<UniqueIdentifier | null>(null);
@@ -140,6 +140,11 @@ export function MultipleContainers({ fullList, onlyList, onlyListIds }: any) {
 
   const findListName = (id: string) => {
     const found = onlyList.find((list: any) => list._id === id);
+    return found?.name ?? id;
+  };
+
+  const findCardName = (id: string) => {
+    const found = onlyCards.find((card: any) => card._idCard === id);
     return found?.name ?? id;
   };
 
@@ -260,6 +265,7 @@ export function MultipleContainers({ fullList, onlyList, onlyListIds }: any) {
                       index={index}
                       containerId={containerId}
                       getIndex={getIndex}
+                      content={findCardName(value)}
                     />
                   );
                 })}
@@ -287,16 +293,15 @@ export function MultipleContainers({ fullList, onlyList, onlyListIds }: any) {
     </DndContext>
   );
 
-  function renderSortableItemDragOverlay(id: UniqueIdentifier) {
-    //console.log("blanco fijo");
-    return <Item value={id} dragOverlay />;
+  function renderSortableItemDragOverlay(id: any) {
+    return <Item value={id} dragOverlay content={findCardName(id)} />;
   }
 
   function renderContainerDragOverlay(containerId: any) {
     return (
       <Container title={findListName(containerId)} style={{ height: "100%" }}>
-        {items[containerId].map((item: any, index: any) => (
-          <Item key={item} value={item} />
+        {items[containerId].map((item: any) => (
+          <Item key={item} value={item} content={findCardName(item)} />
         ))}
       </Container>
     );
@@ -308,7 +313,6 @@ export function MultipleContainers({ fullList, onlyList, onlyListIds }: any) {
 
   function handleAddColumn() {
     const newContainerId = getNextContainerId(items);
-    //console.log("newContainerId:    ", newContainerId);
     setContainers((containers: any) => [...containers, newContainerId]);
     setItems((items: any) => ({
       ...items,

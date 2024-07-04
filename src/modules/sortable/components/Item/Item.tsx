@@ -6,7 +6,7 @@ import styles from "./Item.module.css";
 import { Card, Text } from "@mantine/core";
 
 export interface Props {
-  children?: React.ReactNode;
+  content: any;
   dragOverlay?: boolean;
   color?: string;
   disabled?: boolean;
@@ -19,7 +19,6 @@ export interface Props {
   sorting?: boolean;
   style?: React.CSSProperties;
   transition?: string | null;
-/*   wrapperStyle?: React.CSSProperties; */
   value: React.ReactNode;
   onRemove?(): void;
   renderItem?(args: {
@@ -40,7 +39,6 @@ export interface Props {
 export const Item = React.memo(
   React.forwardRef<HTMLLIElement, Props>(({ ...properties }, ref) => {
     const {
-      children,
       color,
       dragOverlay,
       dragging,
@@ -54,6 +52,7 @@ export const Item = React.memo(
       transition,
       transform,
       value,
+      content,
       ...props
     } = properties;
     useEffect(() => {
@@ -88,17 +87,16 @@ export const Item = React.memo(
         ref={ref}
       >
         <div
+          id="custome-draggable-item"
           className={classNames(dragging && styles.dragging, dragOverlay && styles.dragOverlay, disabled && styles.disabled)}
           data-cypress="draggable-item"
           {...listeners}
           {...props}
           style={{ width: "100%", marginBottom: "15px" }}
         >
-          {/* {children} */}
           <Card shadow="sm" padding="lg" radius="md" withBorder color="lime.5" bg="dark.4">
             <Text size="sm" c="gray" fw={700}>
-              {value} Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nulla sint nobis commodi harum voluptatem! Quis
-              nobis enim id necessitatibus. Unde id ut minima at quae reiciendis eum quia incidunt ab!
+              {content}
             </Text>
           </Card>
         </div>
