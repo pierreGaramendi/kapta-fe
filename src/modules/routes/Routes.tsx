@@ -6,10 +6,8 @@ import App from "../../App";
 import { Home } from "../home/Home";
 import { Login } from "../auth/pages/Login";
 import { Signup } from "../auth/pages/Signup";
-import { DndPageDemo } from "../dnd/Dnd";
 import { SortablePage } from "../sortable/SortablePage";
 import { WorkspacePage } from "../workspace/Workspace";
-
 
 export const AppRoutes = () => {
   return createBrowserRouter([
@@ -50,14 +48,6 @@ export const AppRoutes = () => {
           element: (
             <ProtectedRoute>
               <WorkspacePage />
-            </ProtectedRoute>
-          ),
-        },
-        {
-          path: "dnd",
-          element: (
-            <ProtectedRoute>
-              <DndPageDemo />
             </ProtectedRoute>
           ),
         },
