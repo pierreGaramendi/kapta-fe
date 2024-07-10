@@ -9,6 +9,7 @@ import { Signup } from "../auth/pages/Signup";
 import { SortablePage } from "../sortable/SortablePage";
 import { WorkspacePage } from "../workspace/Workspace";
 
+
 export const AppRoutes = () => {
   return createBrowserRouter([
     {
