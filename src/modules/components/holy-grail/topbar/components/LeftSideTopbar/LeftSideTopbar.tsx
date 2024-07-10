@@ -2,12 +2,13 @@ import { ActionIcon, Avatar, Button, Flex, Group, Menu, Modal, Text, TextInput, 
 import { useDisclosure } from "@mantine/hooks";
 import { IconPlus, IconSettings, IconMessageCircle, IconPhoto } from "@tabler/icons-react";
 import { useForm } from "@mantine/form";
-import { useInsertWorkspace } from "../../../../../workspace/hooks/useInsertWorkspace";
 import useUserStore from "../../../../../stores/userStore";
 
 export const LeftSideTopbar = () => {
   const { user } = useUserStore();
-  const insertWorkspace = useInsertWorkspace();
+  const insertWorkspace = (id: any, ws: any) => {
+    return { succes: true };
+  };
 
   const form = useForm({
     mode: "uncontrolled",

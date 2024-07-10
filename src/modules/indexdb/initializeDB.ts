@@ -1,6 +1,3 @@
-// src/initializeDB.ts
-import { addData } from "./dbOperations";
-
 const sampleData = {
   users: [
     {
@@ -273,12 +270,3 @@ export const sampleListsData = [
     ],
   },
 ];
-const initializeDB = async () => {
-  await addData("users", sampleData.users);
-  await addData("workspaces", sampleData.workspaces);
-  await addData("lists", sampleData.lists);
-  await addData("comments", sampleData.comments);
-  await addData("labels", sampleData.labels);
-};
-
-export { initializeDB };

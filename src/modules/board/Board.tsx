@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom";
-import { useBoardById } from "./hooks/useBoardById";
 import { Card as CardModel } from "../indexdb/kapta.model";
 import { Box, Flex, Text } from "@mantine/core";
 import { NewListComponent } from "./components/NewList/NewList";
@@ -15,7 +14,7 @@ import { sampleListsData } from "../indexdb/initializeDB";
 
 export const Board = () => {
   const { id } = useParams<{ id: string }>();
-  const { board } = useBoardById(id || "");
+  const board: any = [];
   const initializeStore = useListStore((state: any) => state.initializeStore);
   const lists = useListStore((state: any) => state.lists);
 
