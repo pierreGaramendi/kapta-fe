@@ -1,23 +1,6 @@
-import {
-  ActionIcon,
-  Avatar,
-  Button,
-  Flex,
-  Group,
-  Menu,
-  Modal,
-  Text,
-  TextInput,
-  Textarea,
-  rem,
-} from "@mantine/core";
+import { ActionIcon, Avatar, Button, Flex, Group, Menu, Modal, Text, TextInput, Textarea, rem } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import {
-  IconPlus,
-  IconSettings,
-  IconMessageCircle,
-  IconPhoto,
-} from "@tabler/icons-react";
+import { IconPlus, IconSettings, IconMessageCircle, IconPhoto } from "@tabler/icons-react";
 import { useForm } from "@mantine/form";
 import { useInsertWorkspace } from "../../../../../workspace/hooks/useInsertWorkspace";
 import useUserStore from "../../../../../stores/userStore";
@@ -33,8 +16,7 @@ export const LeftSideTopbar = () => {
       description: "",
     },
     validate: {
-      name: (value: any) =>
-        value.length <= 0 ? "Name must have at least 2 letters" : null,
+      name: (value: any) => (value.length <= 0 ? "Name must have at least 2 letters" : null),
     },
   });
   const handleOnSubmit = async (form: any) => {
@@ -65,10 +47,7 @@ export const LeftSideTopbar = () => {
         <Text fw={700} size="xl">
           Nuevo Espacio de Trabajo
         </Text>
-        <Text>
-          Impulsa tu productividad facilitándoles a todos el acceso a los
-          tableros en una única ubicación.
-        </Text>
+        <Text>Impulsa tu productividad facilitándoles a todos el acceso a los tableros en una única ubicación.</Text>
         <form onSubmit={form.onSubmit(handleOnSubmit)}>
           <TextInput
             mt="md"
@@ -92,57 +71,32 @@ export const LeftSideTopbar = () => {
           </Group>
         </form>
       </Modal>
-      <Flex
-        mih={50}
-        gap="xs"
-        justify="center"
-        align="center"
-        direction="row"
-        wrap="wrap"
-      >
+      <Flex mih={50} gap="xs" justify="center" align="center" direction="row" wrap="wrap">
         <Menu withArrow>
           <Menu.Target>
-            <ActionIcon
-              color="violet"
-              variant="filled"
-              size="lg"
-              aria-label="Settings"
-            >
+            <ActionIcon color="violet" variant="filled" size="lg" aria-label="Settings">
               <IconPlus style={{ width: "70%", height: "70%" }} stroke={1.5} />
             </ActionIcon>
           </Menu.Target>
           <Menu.Dropdown>
             <Menu.Label>Crea elemento</Menu.Label>
-            <Menu.Item
-              leftSection={
-                <IconSettings style={{ width: rem(14), height: rem(14) }} />
-              }
-            >
-              Crear Tablero
-            </Menu.Item>
-            <Menu.Item
-              onClick={open}
-              leftSection={
-                <IconMessageCircle
-                  style={{ width: rem(14), height: rem(14) }}
-                />
-              }
-            >
+            <Menu.Item leftSection={<IconSettings style={{ width: rem(14), height: rem(14) }} />}>Crear Tablero</Menu.Item>
+            <Menu.Item onClick={open} leftSection={<IconMessageCircle style={{ width: rem(14), height: rem(14) }} />}>
               Crear Espacio de Trabajo
             </Menu.Item>
-            <Menu.Item
-              leftSection={
-                <IconPhoto style={{ width: rem(14), height: rem(14) }} />
-              }
-            >
+            <Menu.Item leftSection={<IconPhoto style={{ width: rem(14), height: rem(14) }} />}>
               Empezar desde una plantilla
             </Menu.Item>
           </Menu.Dropdown>
         </Menu>
         <Avatar
-          src="https://raw.githubusercontent.com/mantinedev/mantine/master/.demo/avatars/avatar-9.png"
+          /* src="https://images.unsplash.com/photo-1511485977113-f34c92461ad9?ixlib=rb-1.2.1&w=128&h=128&dpr=2&q=80" */
           alt="it's me"
-        />
+          color="violet"
+          variant="gradient"
+        >
+          AA
+        </Avatar>
       </Flex>
     </>
   );
